@@ -1,10 +1,10 @@
 variable "condition" {
   description = "Rule condition"
   type = object({
-    host_header  = optional(string, null)
-    path_pattern = optional(string, null)
-    http_method  = optional(string, null)
-    source_ip    = optional(string, null)
+    host_header  = optional(list(string), [])
+    path_pattern = optional(list(string), [])
+    http_method  = optional(list(string), [])
+    source_ip    = optional(list(string), [])
   })
 }
 variable "redirect" {
