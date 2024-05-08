@@ -22,9 +22,23 @@ resource "aws_lb_listener" "public" {
   }
 }
 
+resource "aws_lb_listener" "public_http" {
+  load_balancer_arn = aws_lb.public.arn
+  protocol          = "HTTP"
+  port              = "80"
+  default_action {
+    type             = "redirect"
+    redirect {
+      port = "443"
+      protocol = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
 resource "aws_lb_target_group" "public_alb" {
   for_each    = var.target_groups
-  name        = "${local.name-prefix}-tg-${each.key}"
+  name        = "${local.name-prefix}-${each.key}"
   target_type = each.value.type
   vpc_id      = each.value.vpc_id
   protocol    = each.value.protocol
