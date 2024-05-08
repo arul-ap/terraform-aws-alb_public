@@ -23,7 +23,7 @@ module "alb_public" {
     name              = "frond-end"
     subnet_id         = [module.vpc.public_subnet_id["web-subnet-01"], module.vpc.public_subnet_id["web-subnet-02"], module.vpc.public_subnet_id["web-subnet-03"]]
     security_group_id = [module.vpc.sg_id["web-sg"]]
-    default_cert_arn = "" //insert cert ARN from ACM
+    default_cert_arn  = "" //insert cert ARN from ACM
     default_tg        = "tg-01"
   }
   target_groups = {
@@ -46,8 +46,8 @@ module "alb_public" {
     }
   }
   certs_arn = { //additional certs to import to ALB
-   // cert-01 = "" 
-   // cert-02 = ""
+    // cert-01 = "" 
+    // cert-02 = ""
   }
   rules = {
     rule-01 = {
