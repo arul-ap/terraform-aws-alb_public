@@ -27,10 +27,10 @@ resource "aws_lb_listener" "public_http" {
   protocol          = "HTTP"
   port              = "80"
   default_action {
-    type             = "redirect"
+    type = "redirect"
     redirect {
-      port = "443"
-      protocol = "HTTPS"
+      port        = "443"
+      protocol    = "HTTPS"
       status_code = "HTTP_301"
     }
   }
